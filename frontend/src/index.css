@@ -1,0 +1,12 @@
+@import "tailwindcss";
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+.font-anime {
+  font-family: 'Orbitron', sans-serif;
+}
+
+.font-modern {
+  font-family: 'Poppins', sans-serif;
+}
