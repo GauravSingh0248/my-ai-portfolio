@@ -6,7 +6,7 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="min-h-screen bg-gradient-to-br from-sky-100 via-cyan-50 to-blue-100 pt-22 pb-16 px-4 sm:px-6 lg:px-8 flex items-center justify-center"
+      className="scroll-mt-28 flex min-h-screen items-center justify-center bg-gradient-to-br from-sky-100 via-cyan-50 to-blue-100 px-4 py-28 pb-16 sm:px-6 lg:px-8"
     >
       <div className="max-w-7xl w-full grid lg:grid-cols-2 rounded-3xl overflow-hidden shadow-2xl bg-white">
         {/* ================= LEFT SECTION ================= */}
