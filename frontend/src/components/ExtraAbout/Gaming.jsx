@@ -231,13 +231,13 @@ const Gaming = () => {
         <div className="mb-20 flex items-center justify-between">
           <Link
             to="/about"
-            className="group inline-flex items-center gap-2.5 rounded-full border border-white/8 bg-white/[0.02] px-4 py-2.5 text-sm text-white/50 backdrop-blur-xl transition duration-300 hover:border-white/20 hover:text-white"
+            className="group inline-flex items-center gap-2.5 rounded-full border border-white/8 bg-white/2 px-4 py-2.5 text-sm text-white/50 backdrop-blur-xl transition duration-300 hover:border-white/20 hover:text-white"
           >
             <FaArrowLeft className="text-xs transition-transform group-hover:-translate-x-0.5" />
             Back to About
           </Link>
 
-          <div className="hidden items-center gap-2 rounded-full border border-white/8 bg-white/[0.02] px-4 py-2 text-xs font-medium tracking-wide text-white/40 sm:flex">
+          <div className="hidden items-center gap-2 rounded-full border border-white/8 bg-white/2 px-4 py-2 text-xs font-medium tracking-wide text-white/40 sm:flex">
             <FaClock className="text-white/30" />
             Free time activity
           </div>
@@ -275,18 +275,18 @@ const Gaming = () => {
           {/* Featured spotlight */}
           <div className="relative">
             <div
-              className="absolute -inset-6 rounded-[2rem] blur-3xl transition-all duration-700"
+              className="absolute -inset-6 rounded-4xl blur-3xl transition-all duration-700"
               style={{ background: hoveredGame.glow }}
             />
 
-            <div className="relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/[0.03] shadow-2xl backdrop-blur-sm">
-              <div className="relative aspect-[16/10] overflow-hidden">
+            <div className="relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/3 shadow-2xl backdrop-blur-sm">
+              <div className="relative aspect-16/10 overflow-hidden">
                 <img
                   src={hoveredGame.image}
                   alt={hoveredGame.name}
                   className="h-full w-full object-cover transition duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#050508] via-[#050508]/40 to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-t from-[#050508] via-[#050508]/40 to-transparent" />
 
                 <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
                   <span
@@ -342,7 +342,7 @@ const Gaming = () => {
           {moods.map((item) => (
             <div
               key={item.title}
-              className="group rounded-2xl border border-white/6 bg-white/[0.02] p-5 transition duration-300 hover:border-white/12 hover:bg-white/[0.04]"
+              className="group rounded-2xl border border-white/6 bg-white/2 p-5 transition duration-300 hover:border-white/12 hover:bg-white/4"
             >
               <span className="text-sm text-white/30 transition group-hover:text-white/50">
                 {item.icon}
@@ -370,7 +370,7 @@ const Gaming = () => {
               </p>
             </div>
 
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/8 bg-white/[0.02] px-4 py-2 text-xs text-white/35">
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/8 bg-white/2 px-4 py-2 text-xs text-white/35">
               <FaIdBadge className="text-white/25" />
               {gameUsernames.length} accounts
             </div>
@@ -404,7 +404,7 @@ const Gaming = () => {
             </p>
           </div>
 
-          <div className="grid auto-rows-[180px] grid-cols-2 gap-3 sm:auto-rows-[200px] lg:grid-cols-4">
+          <div className="grid auto-rows-45 grid-cols-2 gap-3 sm:auto-rows-50 lg:grid-cols-4">
             {games.map((game, index) => (
               <BentoCard
                 key={game.name}
@@ -418,7 +418,7 @@ const Gaming = () => {
         </section>
 
         {/* Coding parallel — subtle, not identity */}
-        <section className="mt-32 overflow-hidden rounded-[1.75rem] border border-white/6 bg-gradient-to-br from-white/[0.03] to-transparent p-8 sm:p-12">
+        <section className="mt-32 overflow-hidden rounded-[1.75rem] border border-white/6 bg-linear-to-br from-white/3 to-transparent p-8 sm:p-12">
           <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.35em] text-white/30">
@@ -467,7 +467,7 @@ const Gaming = () => {
 
           <Link
             to="/about"
-            className="mt-10 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-6 py-3 text-sm font-medium text-white/60 transition hover:border-white/20 hover:text-white"
+            className="mt-10 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/3 px-6 py-3 text-sm font-medium text-white/60 transition hover:border-white/20 hover:text-white"
           >
             <FaArrowLeft className="text-xs" />
             Back to About
@@ -491,7 +491,7 @@ const Gaming = () => {
                 alt={selectedGame.name}
                 className="h-full w-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] via-[#0a0a0f]/30 to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-t from-[#0a0a0f] via-[#0a0a0f]/30 to-transparent" />
 
               <button
                 onClick={() => setSelectedGame(null)}
@@ -524,7 +524,7 @@ const Gaming = () => {
                 {selectedGame.description}
               </p>
 
-              <p className="mt-6 rounded-xl border border-white/5 bg-white/[0.02] p-4 text-sm leading-6 text-white/40">
+              <p className="mt-6 rounded-xl border border-white/5 bg-white/2 p-4 text-sm leading-6 text-white/40">
                 One of those titles I come back to when I have an hour to spare
                 — nothing more complicated than that.
               </p>
@@ -540,7 +540,7 @@ const UsernameCard = ({ entry, copied, onCopy }) => (
   <button
     type="button"
     onClick={onCopy}
-    className="group flex w-full items-center justify-between gap-4 rounded-2xl border border-white/6 bg-white/[0.02] px-4 py-3.5 text-left transition duration-300 hover:border-white/12 hover:bg-white/[0.04]"
+    className="group flex w-full items-center justify-between gap-4 rounded-2xl border border-white/6 bg-white/2 px-4 py-3.5 text-left transition duration-300 hover:border-white/12 hover:bg-white/4"
   >
     <div className="min-w-0 flex-1">
       <div className="flex items-center gap-2">
@@ -564,7 +564,7 @@ const UsernameCard = ({ entry, copied, onCopy }) => (
       className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border transition duration-300 ${
         copied
           ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-400"
-          : "border-white/8 bg-white/[0.03] text-white/30 group-hover:border-white/16 group-hover:text-white/60"
+          : "border-white/8 bg-white/3 text-white/30 group-hover:border-white/16 group-hover:text-white/60"
       }`}
     >
       {copied ? (
@@ -581,14 +581,14 @@ const BentoCard = ({ game, index, onHover, onClick }) => (
     onClick={onClick}
     onMouseEnter={onHover}
     onFocus={onHover}
-    className={`group relative overflow-hidden rounded-2xl border border-white/8 bg-white/[0.02] text-left transition duration-500 hover:border-white/16 hover:shadow-[0_20px_50px_rgba(0,0,0,0.5)] ${game.span}`}
+    className={`group relative overflow-hidden rounded-2xl border border-white/8 bg-white/2 text-left transition duration-500 hover:border-white/16 hover:shadow-[0_20px_50px_rgba(0,0,0,0.5)] ${game.span}`}
   >
     <img
       src={game.image}
       alt={game.name}
       className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105"
     />
-    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/10 transition duration-500 group-hover:from-black/95" />
+    <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/30 to-black/10 transition duration-500 group-hover:from-black/95" />
 
     <div
       className="absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100"

@@ -288,7 +288,7 @@ const MovieAnime = () => {
           <h1 className="hero-animate hero-animate-delay-2 mt-6 text-[clamp(2.5rem,9vw,6rem)] font-black leading-[0.92] tracking-tight">
             MOVIES.
             <span className="block text-white/90">SERIES.</span>
-            <span className="block bg-gradient-to-r from-amber-300 to-orange-500 bg-clip-text text-transparent">
+            <span className="block bg-linear-to-r from-amber-300 to-orange-500 bg-clip-text text-transparent">
               ANIME.
             </span>
           </h1>
@@ -393,7 +393,7 @@ const MovieAnime = () => {
             />
 
             {/* Interactive showcase */}
-            <div className="mt-12 overflow-hidden rounded-2xl border border-amber-500/20 bg-gradient-to-br from-amber-950/30 to-black/40 p-6 backdrop-blur-sm sm:p-8">
+            <div className="mt-12 overflow-hidden rounded-2xl border border-amber-500/20 bg-linear-to-br from-amber-950/30 to-black/40 p-6 backdrop-blur-sm sm:p-8">
               <p className="text-xs font-semibold uppercase tracking-[0.35em] text-amber-400/70">
                 Select a favorite
               </p>
@@ -500,7 +500,7 @@ const MovieAnime = () => {
           {/* Viewer Profile */}
           <section
             data-section="profile"
-            className="relative mx-5 my-24 overflow-hidden rounded-2xl border border-cyan-500/20 bg-gradient-to-br from-cyan-950/20 to-black/60 p-8 sm:mx-8"
+            className="relative mx-5 my-24 overflow-hidden rounded-2xl border border-cyan-500/20 bg-linear-to-br from-cyan-950/20 to-black/60 p-8 sm:mx-8"
           >
             <div className="absolute -right-20 -top-20 h-60 w-60 rounded-full bg-cyan-500/10 blur-[80px]" />
             <p className="text-xs font-semibold uppercase tracking-[0.4em] text-cyan-400/70">
@@ -549,7 +549,7 @@ const MovieAnime = () => {
               ].map((item) => (
                 <span
                   key={item}
-                  className="rounded-full border border-white/8 bg-white/[0.03] px-4 py-2 text-xs text-white/50"
+                  className="rounded-full border border-white/8 bg-white/3 px-4 py-2 text-xs text-white/50"
                 >
                   {item}
                 </span>
@@ -580,7 +580,7 @@ const MovieAnime = () => {
 
             <Link
               to="/about"
-              className="mt-16 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-6 py-3 text-sm text-white/55 transition hover:border-white/20 hover:text-white"
+              className="mt-16 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/3 py-3 text-sm text-white/55 transition hover:border-white/20 hover:text-white"
             >
               <FaArrowLeft className="text-xs" />
               Back
@@ -628,7 +628,7 @@ const CinematicPreview = ({
         />
       )}
       <div
-        className={`absolute inset-0 bg-gradient-to-r from-[#030308] transition duration-1000 ${
+        className={`absolute inset-0 bg-linear-to-r from-[#030308] transition duration-1000 ${
           outroMode
             ? "via-[#030308]/92 to-[#030308]/75"
             : showMovie
@@ -644,7 +644,7 @@ const CinematicPreview = ({
             : `radial-gradient(ellipse 70% 50% at 80% 30%, ${theme.glow}, transparent 65%)`,
         }}
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#030308] via-transparent to-[#030308]/60" />
+      <div className="absolute inset-0 bg-linear-to-t from-[#030308] via-transparent to-[#030308]/60" />
       <div
         className="absolute inset-0"
         style={{
@@ -715,7 +715,7 @@ const ScrollProgress = ({ activeSection }) => {
     <div className="fixed right-4 top-1/2 z-40 hidden -translate-y-1/2 flex-col items-center gap-3 md:flex">
       <div className="h-32 w-px bg-white/10">
         <div
-          className="w-full bg-gradient-to-b from-amber-400 to-orange-500 transition-all duration-500"
+          className="w-full bg-linear-to-b from-amber-400 to-orange-500 transition-all duration-500"
           style={{
             height: `${((parseInt(activeNum, 10) || 0) / 6) * 100}%`,
           }}
@@ -782,10 +782,10 @@ const MovieSection = ({
       } ${isAnime ? "border-t border-purple-900/30" : ""}`}
     >
       {isHindi && (
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-red-950/10 via-transparent to-orange-950/10" />
+        <div className="pointer-events-none absolute inset-0 bg-linear-to-br from-red-950/10 via-transparent to-orange-950/10" />
       )}
       {isAnime && (
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-purple-950/15 via-blue-950/10 to-transparent" />
+        <div className="pointer-events-none absolute inset-0 bg-linear-to-br from-purple-950/15 via-blue-950/10 to-transparent" />
       )}
 
       <SectionHeader number={number} label={label} title={title} subtitle={subtitle} />
@@ -930,10 +930,10 @@ const HorizontalMovieCarousel = ({
   return (
     <div className="relative mt-10">
       <div
-        className={`pointer-events-none absolute left-0 top-0 z-10 h-[calc(100%-0.5rem)] w-8 bg-gradient-to-r ${fadeClass} to-transparent sm:w-14`}
+        className={`pointer-events-none absolute left-0 top-0 z-10 h-[calc(100%-0.5rem)] w-8 bg-linear-to-r ${fadeClass} to-transparent sm:w-14`}
       />
       <div
-        className={`pointer-events-none absolute right-0 top-0 z-10 h-[calc(100%-0.5rem)] w-8 bg-gradient-to-l ${fadeClass} to-transparent sm:w-14`}
+        className={`pointer-events-none absolute right-0 top-0 z-10 h-[calc(100%-0.5rem)] w-8 bg-linear-to-l ${fadeClass} to-transparent sm:w-14`}
       />
 
       <button
@@ -1028,7 +1028,7 @@ const MovieCard = ({
           loading="lazy"
           className="h-full w-full object-cover transition duration-700 group-hover:scale-110"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-t from-black via-black/40 to-transparent" />
 
         {movie.badge && (
           <span className="absolute left-3 top-3 rounded-full border border-white/15 bg-black/50 px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider text-white/70 backdrop-blur-sm">
@@ -1083,7 +1083,7 @@ const FavoritePanel = ({ favorite, onSelect, onOpen, onHover, onHoverEnd }) => {
         tabIndex={0}
         className="relative overflow-hidden rounded-xl border border-stone-700/30 bg-stone-950/40 p-8 sm:p-10 outline-none transition duration-300 focus:border-stone-500/40"
       >
-        <div className="absolute inset-0 bg-gradient-to-br from-stone-900/50 to-black/80" />
+        <div className="absolute inset-0 bg-linear-to-br from-stone-900/50 to-black/80" />
         <div className="relative">
           <p className="text-[10px] font-semibold uppercase tracking-[0.4em] text-stone-500">
             {favorite.category}
@@ -1118,16 +1118,16 @@ const FavoritePanel = ({ favorite, onSelect, onOpen, onHover, onHoverEnd }) => {
       onFocus={onHover}
       onBlur={onHoverEnd}
       tabIndex={0}
-      className="group grid overflow-hidden rounded-xl border border-white/8 bg-white/[0.02] outline-none transition duration-300 hover:border-white/15 focus:border-white/15 sm:grid-cols-[200px_1fr]"
+      className="group grid overflow-hidden rounded-xl border border-white/8 bg-white/2 outline-none transition duration-300 hover:border-white/15 focus:border-white/15 sm:grid-cols-[200px_1fr]"
     >
-      <div className="relative aspect-[2/3] sm:aspect-auto sm:min-h-[280px]">
+      <div className="relative aspect-2/3 sm:aspect-auto sm:min-h-70">
         <img
           src={favorite.poster}
           alt={favorite.title}
           loading="lazy"
           className="h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/60 sm:bg-gradient-to-t sm:from-black/80" />
+        <div className="absolute inset-0 bg-linear-to-r from-transparent to-black/60 sm:bg-linear-to-t sm:from-black/80" />
       </div>
       <div className="flex flex-col justify-center p-6 sm:p-8">
         <div className="flex items-center gap-2">
@@ -1163,7 +1163,7 @@ const FavoritePanel = ({ favorite, onSelect, onOpen, onHover, onHoverEnd }) => {
 /* ─── Info Pill ─── */
 
 const InfoPill = ({ label, value }) => (
-  <div className="rounded-lg border border-white/8 bg-white/[0.03] px-4 py-3">
+  <div className="rounded-lg border border-white/8 bg-white/3 px-4 py-3">
     <p className="text-[10px] font-bold uppercase tracking-widest text-white/30">
       {label}
     </p>
@@ -1211,7 +1211,7 @@ const MovieModal = ({ movie, onClose }) => {
             alt={movie.title}
             className="h-full w-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a12] via-[#0a0a12]/40 to-transparent" />
+          <div className="absolute inset-0 bg-linear-to-t from-[#0a0a12] via-[#0a0a12]/40 to-transparent" />
           <button
             type="button"
             onClick={onClose}
@@ -1239,7 +1239,7 @@ const MovieModal = ({ movie, onClose }) => {
           <p className="mt-5 leading-7 text-white/55">{movie.description}</p>
 
           {(movie.whyILike || movie.whyILove || movie.whyRecommend) && (
-            <div className="mt-6 rounded-xl border border-white/8 bg-white/[0.03] p-4">
+            <div className="mt-6 rounded-xl border border-white/8 bg-white/3 p-4">
               <p className="text-[10px] font-bold uppercase tracking-widest text-white/30">
                 Why it matters to me
               </p>
@@ -1250,7 +1250,7 @@ const MovieModal = ({ movie, onClose }) => {
           )}
 
           {(movie.emotionalImpact || movie.feeling) && (
-            <div className="mt-4 rounded-xl border border-white/8 bg-white/[0.03] p-4">
+            <div className="mt-4 rounded-xl border border-white/8 bg-white/3 p-4">
               <p className="text-[10px] font-bold uppercase tracking-widest text-white/30">
                 Emotional impact
               </p>

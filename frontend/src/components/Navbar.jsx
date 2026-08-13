@@ -266,10 +266,10 @@ const Navbar = () => {
                   isMusicPage
                     ? "bg-[#1DB954] text-black shadow-[#1DB954]/30"
                     : isGamingPage
-                      ? "bg-gradient-to-br from-violet-500 to-cyan-400 shadow-violet-500/30"
+                      ? "bg-linear-to-br from-violet-500 to-cyan-400 shadow-violet-500/30"
                       : isMoviePage
-                        ? "bg-gradient-to-br from-amber-500 to-orange-500 shadow-amber-500/30"
-                        : "bg-gradient-to-br from-orange-500 to-amber-400 shadow-orange-500/30"
+                        ? "bg-linear-to-br from-amber-500 to-orange-500 shadow-amber-500/30"
+                        : "bg-linear-to-br from-orange-500 to-amber-400 shadow-orange-500/30"
                 }
               `}
             >
@@ -294,7 +294,7 @@ const Navbar = () => {
                       ? "text-violet-400"
                       : isMoviePage
                         ? "text-amber-400"
-                        : "bg-gradient-to-r from-orange-400 to-amber-300 bg-clip-text text-transparent"
+                        : "bg-linear-to-r from-orange-400 to-amber-300 bg-clip-text text-transparent"
                 }
               >
                 Singh
@@ -368,7 +368,7 @@ const Navbar = () => {
                 relative
                 overflow-hidden
                 rounded-full
-                bg-gradient-to-r
+                bg-linear-to-r
                 from-violet-500
                 to-cyan-400
                 px-5
@@ -389,7 +389,7 @@ const Navbar = () => {
                 relative
                 overflow-hidden
                 rounded-full
-                bg-gradient-to-r
+                bg-linear-to-r
                 from-amber-500
                 to-orange-500
                 px-5
@@ -409,7 +409,7 @@ const Navbar = () => {
                 relative
                 overflow-hidden
                 rounded-full
-                bg-gradient-to-r
+                bg-linear-to-r
                 from-orange-500
                 to-amber-500
                 px-5
@@ -433,7 +433,7 @@ const Navbar = () => {
                   absolute
                   inset-0
                   -translate-x-full
-                  bg-gradient-to-r
+                  bg-linear-to-r
                   from-transparent
                   via-white/25
                   to-transparent
@@ -499,7 +499,7 @@ const Navbar = () => {
       <div
         className={`
           fixed
-          top-[4.25rem]
+          top-17
           right-0
           z-40
           w-full
@@ -582,9 +582,9 @@ const Navbar = () => {
                           : isMusicPage
                             ? "text-[#b3b3b3] hover:bg-[#282828] hover:text-white"
                             : isGamingPage
-                              ? "text-white/45 hover:bg-white/[0.06] hover:text-white"
+                              ? "text-white/45 hover:bg-white/6 hover:text-white"
                               : isMoviePage
-                                ? "text-white/45 hover:bg-white/[0.06] hover:text-white"
+                                ? "text-white/45 hover:bg-white/6 hover:text-white"
                                 : isDarkNav
                                 ? "text-white/70 hover:bg-white/5 hover:text-white"
                                 : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
@@ -627,7 +627,7 @@ const Navbar = () => {
             mt-6
             inline-block
             rounded-full
-            bg-gradient-to-r
+            bg-linear-to-r
             from-violet-500
             to-cyan-400
             px-5
@@ -647,7 +647,7 @@ const Navbar = () => {
             mt-6
             inline-block
             rounded-full
-            bg-gradient-to-r
+            bg-linear-to-r
             from-amber-500
             to-orange-500
             px-5
@@ -666,7 +666,7 @@ const Navbar = () => {
             mt-6
             inline-block
             rounded-full
-            bg-gradient-to-r
+            bg-linear-to-r
             from-orange-500
             to-amber-500
             px-5

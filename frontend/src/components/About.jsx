@@ -195,7 +195,7 @@ const About = () => {
         <div
           className="
             absolute inset-0
-            bg-gradient-to-r
+            bg-linear-to-r
             from-black/35
             via-black/10
             to-transparent
@@ -206,7 +206,7 @@ const About = () => {
         <div
           className="
             absolute inset-0
-            bg-gradient-to-t
+            bg-linear-to-t
             from-black/25
             via-transparent
             to-transparent
@@ -253,7 +253,7 @@ const About = () => {
               "
             >
               <div className="flex items-center justify-end gap-3 mb-6">
-                <span className="w-12 h-[2px] bg-orange-400" />
+                <span className="w-12 h-0.5 bg-orange-400" />
 
                 <span className="text-orange-300 tracking-[5px] text-sm font-bold drop-shadow-lg">
                   ABOUT ME
@@ -436,8 +436,8 @@ const About = () => {
           left-1/2
           top-0
           bottom-0
-          w-[2px]
-          bg-gradient-to-b
+          w-0.5
+          bg-linear-to-b
           from-orange-400
           via-orange-300/50
           to-transparent
@@ -925,7 +925,7 @@ const About = () => {
 
                   <div className="h-3 rounded-full bg-white/15 overflow-hidden">
                     <div
-                      className="h-full rounded-full bg-gradient-to-r from-orange-500 to-orange-300"
+                      className="h-full rounded-full bg-linear-to-r from-orange-500 to-orange-300"
                       style={{
                         width: `${item.progress}%`,
                       }}
@@ -1130,7 +1130,7 @@ const CinematicSection = ({
                 {number}
               </span>
 
-              <span className="h-[2px] w-10 bg-orange-300" />
+              <span className="h-0.5 w-10 bg-orange-300" />
 
               <span className="text-white/70 text-sm tracking-[4px] font-semibold">
                 {title}

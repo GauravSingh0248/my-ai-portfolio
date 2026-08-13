@@ -437,7 +437,7 @@ const Music = () => {
         </header>
 
         {/* Spotify-style hero banner */}
-        <section className="mb-10 overflow-hidden rounded-2xl bg-gradient-to-br from-[#1a472a] via-[#121212] to-[#121212] p-6 sm:p-10">
+        <section className="mb-10 overflow-hidden rounded-2xl bg-linear-to-br from-[#1a472a] via-[#121212] to-[#121212] p-6 sm:p-10">
           <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
             <div>
               <p className="mb-3 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-[#1DB954]">
@@ -455,9 +455,9 @@ const Music = () => {
             <button
               type="button"
               onClick={openNowPlaying}
-              className="flex min-w-[260px] items-center gap-4 rounded-xl bg-[#282828]/80 p-4 text-left transition hover:bg-[#333]"
+              className="flex min-w-65 items-center gap-4 rounded-xl bg-[#282828]/80 p-4 text-left transition hover:bg-[#333]"
             >
-              <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-[#1DB954] to-[#169c46] shadow-lg">
+              <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-lg bg-linear-to-br from-[#1DB954] to-[#169c46] shadow-lg">
                 <SiSpotify className="text-2xl text-black" />
               </div>
               <div className="min-w-0 flex-1">
@@ -576,7 +576,7 @@ const Music = () => {
                     className="group rounded-lg bg-[#282828] p-4 text-left transition hover:bg-[#333]"
                   >
                     <div
-                      className={`mb-4 flex h-28 items-end rounded-md bg-gradient-to-br ${pl.color} p-3 shadow-lg`}
+                      className={`mb-4 flex h-28 items-end rounded-md bg-linear-to-br ${pl.color} p-3 shadow-lg`}
                     >
                       <SiSpotify className="text-2xl text-black/70" />
                     </div>
@@ -813,7 +813,7 @@ const SongModal = ({
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-end justify-center sm:items-center sm:p-6"
+      className="fixed inset-0 z-100 flex items-end justify-center sm:items-center sm:p-6"
       role="dialog"
       aria-modal="true"
     >
@@ -824,7 +824,7 @@ const SongModal = ({
         aria-label="Close"
       />
       <div className="relative flex max-h-[88vh] w-full max-w-lg flex-col overflow-hidden rounded-t-2xl bg-[#282828] sm:rounded-2xl">
-        <div className="bg-gradient-to-b from-[#1a472a] to-[#282828] px-6 py-6">
+        <div className="bg-linear-to-b from-[#1a472a] to-[#282828] px-6 py-6">
           <div className="flex items-start justify-between gap-4">
             <div>
               <p className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-[#1DB954]">
