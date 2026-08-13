@@ -1,16 +1,21 @@
 import { useEffect, useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
-import { getNavShellClass, isDarkRoute } from "../utils/shellTheme";
+import { getNavShellClass, isDarkRoute, isGamingRoute, isMovieRoute, isMusicRoute } from "../utils/shellTheme";
 
 import resume from "../assets/Resume/resume.pdf";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
+  const isAboutPage = pathname === "/about";
+  const isMusicPage = isMusicRoute(pathname);
+  const isGamingPage = isGamingRoute(pathname);
+  const isMoviePage = isMovieRoute(pathname);
   const isDarkNav = isDarkRoute(pathname);
 
   const links = [
@@ -21,76 +26,298 @@ const Navbar = () => {
     { name: "Contact", path: "/contact" },
   ];
 
+  /* ---------------------------------------------------------
+     Close mobile menu when route changes
+  --------------------------------------------------------- */
   useEffect(() => {
     setOpen(false);
   }, [pathname]);
 
+  /* ---------------------------------------------------------
+     Detect scroll
+  --------------------------------------------------------- */
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 16);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 16);
+    };
+
+    window.addEventListener("scroll", onScroll, {
+      passive: true,
+    });
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
+  /* ---------------------------------------------------------
+     Prevent body scroll when mobile menu is open
+  --------------------------------------------------------- */
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
+
     return () => {
       document.body.style.overflow = "";
     };
   }, [open]);
 
+  /* ---------------------------------------------------------
+     Desktop navigation links
+  --------------------------------------------------------- */
   const navLinkClass = ({ isActive }) =>
-    `rounded-full px-4 py-2 text-sm font-medium tracking-wide transition-all duration-300 ${
-      isActive
-        ? "bg-orange-500 text-white shadow-lg shadow-orange-500/30"
-        : isDarkNav
-          ? "text-white/65 hover:bg-white/10 hover:text-white"
-          : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
-    }`;
+    `
+      rounded-full
+      px-4
+      py-2
+      text-sm
+      font-medium
+      tracking-wide
+      transition-all
+      duration-300
 
-  const shellClass = getNavShellClass(isDarkNav, scrolled);
+      ${
+        isActive
+          ? isMusicPage
+            ? "bg-[#1DB954] text-black shadow-lg shadow-[#1DB954]/30"
+            : isGamingPage
+              ? "bg-violet-500 text-white shadow-lg shadow-violet-500/30"
+              : isMoviePage
+                ? "bg-amber-500 text-black shadow-lg shadow-amber-500/30"
+                : "bg-orange-500 text-white shadow-lg shadow-orange-500/30"
+          : isAboutPage
+            ? "text-slate-700 hover:bg-white/30 hover:text-slate-900"
+            : isMusicPage
+              ? "text-[#b3b3b3] hover:bg-[#282828] hover:text-white"
+              : isGamingPage
+                ? "text-white/45 hover:bg-white/[0.06] hover:text-white"
+                : isMoviePage
+                  ? "text-white/45 hover:bg-white/[0.06] hover:text-white"
+                  : isDarkNav
+                  ? "text-white/65 hover:bg-white/10 hover:text-white"
+                  : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
+      }
+    `;
 
-  const logoTextClass = isDarkNav ? "text-white" : "text-gray-900";
-  const pillClass = isDarkNav
-    ? "border-white/10 bg-white/5"
-    : "border-gray-200/80 bg-gray-50/80";
-  const mobileBtnClass = isDarkNav
-    ? "border-white/10 bg-white/5 text-white hover:bg-white/10"
-    : "border-gray-200 bg-gray-50 text-gray-800 hover:bg-gray-100";
+  /* ---------------------------------------------------------
+     NAVBAR SHELL
+     
+     About page gets its own transparent glass style.
+     Other pages continue using your existing theme system.
+  --------------------------------------------------------- */
+
+  const normalShellClass = getNavShellClass(isDarkNav, scrolled, pathname);
+
+  const aboutShellClass = scrolled
+    ? `
+      bg-white/40
+      backdrop-blur-2xl
+      border-b
+      border-white/40
+      shadow-lg
+      shadow-black/10
+    `
+    : `
+      bg-white/20
+      backdrop-blur-xl
+      border-b
+      border-white/30
+    `;
+
+  const shellClass = isAboutPage ? aboutShellClass : normalShellClass;
+
+  /* ---------------------------------------------------------
+     Logo
+  --------------------------------------------------------- */
+
+  const logoTextClass = isAboutPage
+    ? "text-slate-800"
+    : isMusicPage
+      ? "text-white"
+      : isGamingPage
+        ? "text-white"
+        : isMoviePage
+          ? "text-white"
+          : isDarkNav
+          ? "text-white"
+          : "text-gray-900";
+
+  /* ---------------------------------------------------------
+     Desktop navigation pill
+  --------------------------------------------------------- */
+
+  const pillClass = isAboutPage
+    ? `
+      border-white/30
+      bg-white/20
+      backdrop-blur-md
+    `
+    : isMusicPage
+      ? "border-[#282828] bg-[#181818]"
+      : isGamingPage
+        ? "border-white/8 bg-white/[0.03]"
+        : isMoviePage
+          ? "border-white/10 bg-white/[0.03]"
+          : isDarkNav
+          ? "border-white/10 bg-white/5"
+          : "border-gray-200/80 bg-gray-50/80";
+
+  /* ---------------------------------------------------------
+     Mobile button
+  --------------------------------------------------------- */
+
+  const mobileBtnClass = isAboutPage
+    ? `
+      border-white/30
+      bg-white/25
+      backdrop-blur-md
+      text-slate-800
+      hover:bg-white/40
+    `
+    : isMusicPage
+      ? "border-[#282828] bg-[#181818] text-white hover:bg-[#282828]"
+      : isGamingPage
+        ? "border-white/8 bg-white/[0.04] text-white hover:bg-white/[0.08]"
+        : isMoviePage
+          ? "border-white/10 bg-white/[0.04] text-white hover:bg-white/[0.08]"
+          : isDarkNav
+          ? "border-white/10 bg-white/5 text-white hover:bg-white/10"
+          : "border-gray-200 bg-gray-50 text-gray-800 hover:bg-gray-100";
+
+  /* ---------------------------------------------------------
+     Go Home
+  --------------------------------------------------------- */
 
   const goHomeTop = (e) => {
     e.preventDefault();
+
     if (pathname !== "/") {
       navigate("/");
     }
-    window.scrollTo({ top: 0, behavior: "smooth" });
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
   return (
     <>
+      {/* =====================================================
+          NAVBAR
+      ===================================================== */}
+
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-500 ${shellClass}`}
+        className={`
+          fixed
+          top-0
+          left-0
+          right-0
+          z-50
+          w-full
+
+          transition-all
+          duration-500
+
+          ${shellClass}
+        `}
       >
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3.5 sm:px-8">
+        <div
+          className="
+            mx-auto
+            flex
+            max-w-7xl
+            items-center
+            justify-between
+            px-5
+            py-3.5
+            sm:px-8
+          "
+        >
+          {/* =================================================
+              LOGO
+          ================================================= */}
+
           <Link
             to="/"
             onClick={goHomeTop}
-            className="group flex items-center gap-3 transition-transform duration-300 hover:scale-[1.02]"
+            className="
+              group
+              flex
+              items-center
+              gap-3
+              transition-transform
+              duration-300
+              hover:scale-[1.02]
+            "
           >
-            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-orange-500 to-amber-400 text-sm font-black text-white shadow-lg shadow-orange-500/30">
+            <span
+              className={`
+                flex
+                h-9
+                w-9
+                items-center
+                justify-center
+                rounded-xl
+                text-sm
+                font-black
+                text-white
+                shadow-lg
+                ${
+                  isMusicPage
+                    ? "bg-[#1DB954] text-black shadow-[#1DB954]/30"
+                    : isGamingPage
+                      ? "bg-gradient-to-br from-violet-500 to-cyan-400 shadow-violet-500/30"
+                      : isMoviePage
+                        ? "bg-gradient-to-br from-amber-500 to-orange-500 shadow-amber-500/30"
+                        : "bg-gradient-to-br from-orange-500 to-amber-400 shadow-orange-500/30"
+                }
+              `}
+            >
               GS
             </span>
+
             <span
-              className={`text-lg font-bold tracking-tight sm:text-xl ${logoTextClass}`}
+              className={`
+                text-lg
+                font-bold
+                tracking-tight
+                sm:text-xl
+                ${logoTextClass}
+              `}
             >
               Gaurav
-              <span className="bg-gradient-to-r from-orange-400 to-amber-300 bg-clip-text text-transparent">
+              <span
+                className={
+                  isMusicPage
+                    ? "text-[#1DB954]"
+                    : isGamingPage
+                      ? "text-violet-400"
+                      : isMoviePage
+                        ? "text-amber-400"
+                        : "bg-gradient-to-r from-orange-400 to-amber-300 bg-clip-text text-transparent"
+                }
+              >
                 Singh
               </span>
             </span>
           </Link>
 
+          {/* =================================================
+              DESKTOP NAVIGATION
+          ================================================= */}
+
           <ul
-            className={`hidden items-center gap-1 rounded-full border p-1 md:flex ${pillClass}`}
+            className={`
+              hidden
+              items-center
+              gap-1
+              rounded-full
+              border
+              p-1
+              md:flex
+
+              ${pillClass}
+            `}
           >
             {links.map((item) => (
               <li key={item.name}>
@@ -105,41 +332,224 @@ const Navbar = () => {
             ))}
           </ul>
 
+          {/* =================================================
+              RESUME
+          ================================================= */}
+
           <div className="hidden md:block">
             <a
               href={resume}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative overflow-hidden rounded-full bg-gradient-to-r from-orange-500 to-amber-500 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-orange-500/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-orange-500/40"
+              className={
+                isMusicPage
+                  ? `
+                group
+                relative
+                overflow-hidden
+                rounded-full
+                bg-[#1DB954]
+                px-5
+                py-2.5
+                text-sm
+                font-bold
+                text-black
+                shadow-lg
+                shadow-[#1DB954]/25
+                transition-all
+                duration-300
+                hover:-translate-y-0.5
+                hover:bg-[#1ed760]
+                hover:shadow-[#1DB954]/40
+              `
+                  : isGamingPage
+                    ? `
+                group
+                relative
+                overflow-hidden
+                rounded-full
+                bg-gradient-to-r
+                from-violet-500
+                to-cyan-400
+                px-5
+                py-2.5
+                text-sm
+                font-semibold
+                text-white
+                shadow-lg
+                shadow-violet-500/25
+                transition-all
+                duration-300
+                hover:-translate-y-0.5
+                hover:shadow-violet-500/40
+              `
+                    : isMoviePage
+                      ? `
+                group
+                relative
+                overflow-hidden
+                rounded-full
+                bg-gradient-to-r
+                from-amber-500
+                to-orange-500
+                px-5
+                py-2.5
+                text-sm
+                font-semibold
+                text-black
+                shadow-lg
+                shadow-amber-500/25
+                transition-all
+                duration-300
+                hover:-translate-y-0.5
+                hover:shadow-amber-500/40
+              `
+                      : `
+                group
+                relative
+                overflow-hidden
+                rounded-full
+                bg-gradient-to-r
+                from-orange-500
+                to-amber-500
+                px-5
+                py-2.5
+                text-sm
+                font-semibold
+                text-white
+                shadow-lg
+                shadow-orange-500/25
+                transition-all
+                duration-300
+                hover:-translate-y-0.5
+                hover:shadow-orange-500/40
+              `
+              }
             >
               <span className="relative z-10">Resume</span>
-              <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-500 group-hover:translate-x-full" />
+
+              <span
+                className="
+                  absolute
+                  inset-0
+                  -translate-x-full
+                  bg-gradient-to-r
+                  from-transparent
+                  via-white/25
+                  to-transparent
+                  transition-transform
+                  duration-500
+                  group-hover:translate-x-full
+                "
+              />
             </a>
           </div>
+
+          {/* =================================================
+              MOBILE MENU BUTTON
+          ================================================= */}
 
           <button
             onClick={() => setOpen(!open)}
             aria-label={open ? "Close menu" : "Open menu"}
-            className={`flex h-10 w-10 items-center justify-center rounded-xl border text-lg transition md:hidden ${mobileBtnClass}`}
+            className={`
+              flex
+              h-10
+              w-10
+              items-center
+              justify-center
+              rounded-xl
+              border
+              text-lg
+              transition
+              md:hidden
+
+              ${mobileBtnClass}
+            `}
           >
             {open ? <FaTimes /> : <FaBars />}
           </button>
         </div>
       </nav>
 
+      {/* =====================================================
+          MOBILE OVERLAY
+      ===================================================== */}
+
       <div
-        className={`fixed inset-0 z-40 bg-black/60 backdrop-blur-sm transition-opacity duration-300 md:hidden ${
-          open ? "opacity-100" : "pointer-events-none opacity-0"
-        }`}
+        className={`
+          fixed
+          inset-0
+          z-40
+          bg-black/60
+          backdrop-blur-sm
+          transition-opacity
+          duration-300
+          md:hidden
+
+          ${open ? "opacity-100" : "pointer-events-none opacity-0"}
+        `}
         onClick={() => setOpen(false)}
       />
 
+      {/* =====================================================
+          MOBILE MENU
+      ===================================================== */}
+
       <div
-        className={`fixed top-[4.25rem] right-0 z-40 w-full max-w-sm border-l p-6 shadow-2xl backdrop-blur-2xl transition-all duration-300 md:hidden ${
-          isDarkNav
-            ? "border-white/10 bg-neutral-950/95"
-            : "border-gray-200 bg-white/95"
-        } ${open ? "translate-x-0 opacity-100" : "pointer-events-none translate-x-full opacity-0"}`}
+        className={`
+          fixed
+          top-[4.25rem]
+          right-0
+          z-40
+          w-full
+          max-w-sm
+          border-l
+          p-6
+          shadow-2xl
+          backdrop-blur-2xl
+          transition-all
+          duration-300
+          md:hidden
+
+          ${
+            isAboutPage
+              ? `
+                border-white/30
+                bg-white/70
+              `
+              : isMusicPage
+                ? `
+                  border-[#282828]
+                  bg-[#181818]/98
+                `
+                : isGamingPage
+                  ? `
+                  border-white/8
+                  bg-[#050508]/98
+                `
+                : isMoviePage
+                  ? `
+                  border-white/10
+                  bg-[#030308]/98
+                `
+              : isDarkNav
+                ? `
+                  border-white/10
+                  bg-neutral-950/95
+                `
+                : `
+                  border-gray-200
+                  bg-white/95
+                `
+          }
+
+          ${
+            open
+              ? "translate-x-0 opacity-100"
+              : "pointer-events-none translate-x-full opacity-0"
+          }
+        `}
       >
         <ul className="space-y-1">
           {links.map((item) => (
@@ -148,13 +558,38 @@ const Navbar = () => {
                 to={item.path}
                 end={item.path === "/"}
                 className={({ isActive }) =>
-                  `block rounded-xl px-4 py-3 text-sm font-medium transition-all duration-300 ${
-                    isActive
-                      ? "bg-orange-500/20 text-orange-500"
-                      : isDarkNav
-                        ? "text-white/70 hover:bg-white/5 hover:text-white"
-                        : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
-                  }`
+                  `
+                    block
+                    rounded-xl
+                    px-4
+                    py-3
+                    text-sm
+                    font-medium
+                    transition-all
+                    duration-300
+
+                    ${
+                      isActive
+                        ? isMusicPage
+                          ? "bg-[#1DB954]/20 text-[#1DB954]"
+                          : isGamingPage
+                            ? "bg-violet-500/20 text-violet-300"
+                            : isMoviePage
+                              ? "bg-amber-500/20 text-amber-300"
+                              : "bg-orange-500/20 text-orange-500"
+                        : isAboutPage
+                          ? "text-slate-700 hover:bg-white/30 hover:text-slate-900"
+                          : isMusicPage
+                            ? "text-[#b3b3b3] hover:bg-[#282828] hover:text-white"
+                            : isGamingPage
+                              ? "text-white/45 hover:bg-white/[0.06] hover:text-white"
+                              : isMoviePage
+                                ? "text-white/45 hover:bg-white/[0.06] hover:text-white"
+                                : isDarkNav
+                                ? "text-white/70 hover:bg-white/5 hover:text-white"
+                                : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
+                    }
+                  `
                 }
                 onClick={() => setOpen(false)}
               >
@@ -168,7 +603,85 @@ const Navbar = () => {
           href={resume}
           target="_blank"
           rel="noopener noreferrer"
-          className="group relative overflow-hidden rounded-full bg-gradient-to-r from-orange-500 to-amber-500 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-orange-500/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-orange-500/40"
+          className={
+            isMusicPage
+              ? `
+            mt-6
+            inline-block
+            rounded-full
+            bg-[#1DB954]
+            px-5
+            py-2.5
+            text-sm
+            font-bold
+            text-black
+            shadow-lg
+            shadow-[#1DB954]/25
+            transition-all
+            duration-300
+            hover:-translate-y-0.5
+            hover:bg-[#1ed760]
+          `
+              : isGamingPage
+                ? `
+            mt-6
+            inline-block
+            rounded-full
+            bg-gradient-to-r
+            from-violet-500
+            to-cyan-400
+            px-5
+            py-2.5
+            text-sm
+            font-semibold
+            text-white
+            shadow-lg
+            shadow-violet-500/25
+            transition-all
+            duration-300
+            hover:-translate-y-0.5
+            hover:shadow-violet-500/40
+          `
+                : isMoviePage
+                  ? `
+            mt-6
+            inline-block
+            rounded-full
+            bg-gradient-to-r
+            from-amber-500
+            to-orange-500
+            px-5
+            py-2.5
+            text-sm
+            font-semibold
+            text-black
+            shadow-lg
+            shadow-amber-500/25
+            transition-all
+            duration-300
+            hover:-translate-y-0.5
+            hover:shadow-amber-500/40
+          `
+                  : `
+            mt-6
+            inline-block
+            rounded-full
+            bg-gradient-to-r
+            from-orange-500
+            to-amber-500
+            px-5
+            py-2.5
+            text-sm
+            font-semibold
+            text-white
+            shadow-lg
+            shadow-orange-500/25
+            transition-all
+            duration-300
+            hover:-translate-y-0.5
+            hover:shadow-orange-500/40
+          `
+          }
         >
           Download Resume
         </a>
