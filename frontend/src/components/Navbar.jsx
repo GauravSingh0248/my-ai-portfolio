@@ -3,6 +3,8 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { getNavShellClass, isDarkRoute } from "../utils/shellTheme";
 
+import resume from "../assets/Resume/resume.pdf";
+
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -105,7 +107,9 @@ const Navbar = () => {
 
           <div className="hidden md:block">
             <a
-              href="/resume.pdf"
+              href={resume}
+              target="_blank"
+              rel="noopener noreferrer"
               className="group relative overflow-hidden rounded-full bg-gradient-to-r from-orange-500 to-amber-500 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-orange-500/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-orange-500/40"
             >
               <span className="relative z-10">Resume</span>
@@ -161,8 +165,10 @@ const Navbar = () => {
         </ul>
 
         <a
-          href="/resume.pdf"
-          className="mt-6 flex w-full items-center justify-center rounded-full bg-gradient-to-r from-orange-500 to-amber-500 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-orange-500/25"
+          href={resume}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group relative overflow-hidden rounded-full bg-gradient-to-r from-orange-500 to-amber-500 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-orange-500/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-orange-500/40"
         >
           Download Resume
         </a>
