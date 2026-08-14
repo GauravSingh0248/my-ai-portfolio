@@ -6,6 +6,7 @@ import Skills from "./components/Skills";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
 
+
 import Gaming from "./components/ExtraAbout/Gaming";
 import Learning from "./components/ExtraAbout/Learning";
 import MovieAnime from "./components/ExtraAbout/Movie_Anime";
