@@ -10,14 +10,22 @@ export const isMovieRoute = (pathname) =>
 export const isLearningRoute = (pathname) =>
   pathname.startsWith("/extra-about/learning");
 
-export const isDarkRoute = (pathname) =>
-  pathname === "/" ||
-  pathname === "/projects" ||
-  pathname === "/skills" ||
+export const isImmersiveRoute = (pathname) =>
   isMusicRoute(pathname) ||
   isGamingRoute(pathname) ||
   isMovieRoute(pathname) ||
   isLearningRoute(pathname);
+
+export const isDarkRoute = (pathname) =>
+  pathname === "/" ||
+  pathname === "/projects" ||
+  pathname === "/skills" ||
+  isImmersiveRoute(pathname);
+
+export const resolveIsDark = (pathname, theme = "dark") => {
+  if (isImmersiveRoute(pathname)) return true;
+  return theme === "dark";
+};
 
 export const getNavShellClass = (isDark, scrolled, pathname = "") => {
   if (isMusicRoute(pathname)) {
@@ -103,14 +111,25 @@ export const getFooterShellClass = (isDark, scrolled, pathname = "") => {
     : "border-t border-gray-200/60 bg-white/75 backdrop-blur-xl";
 };
 
-export const getLayoutBgClass = (pathname) => {
-  if (pathname === "/") return "bg-[#1e1e1e]";
-  if (pathname === "/projects" || pathname === "/skills") return "bg-[#070b14]";
+export const getLayoutBgClass = (pathname, theme = "dark") => {
   if (isMusicRoute(pathname)) return "bg-[#121212]";
   if (isGamingRoute(pathname)) return "bg-[#050508]";
   if (isMovieRoute(pathname)) return "bg-[#030308]";
   if (isLearningRoute(pathname)) return "bg-[#050508]";
+
+  const isDark = resolveIsDark(pathname, theme);
+
+  if (isDark) {
+    if (pathname === "/") return "bg-[#1e1e1e]";
+    if (pathname === "/projects" || pathname === "/skills") return "bg-[#070b14]";
+    if (pathname === "/about") return "bg-neutral-950";
+    if (pathname === "/contact") return "bg-[#0a0f1a]";
+    return "bg-neutral-950";
+  }
+
+  if (pathname === "/") return "bg-slate-100";
+  if (pathname === "/projects" || pathname === "/skills") return "bg-slate-50";
   if (pathname === "/about") return "bg-gray-100";
-  if (pathname === "/contact") return "bg-cyan-50";
+  if (pathname === "/contact") return "bg-gradient-to-br from-sky-100 via-cyan-50 to-blue-100";
   return "bg-white";
 };

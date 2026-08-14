@@ -1,7 +1,16 @@
 import { useEffect, useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
-import { getNavShellClass, isDarkRoute, isGamingRoute, isLearningRoute, isMovieRoute, isMusicRoute } from "../utils/shellTheme";
+import {
+  getNavShellClass,
+  isGamingRoute,
+  isLearningRoute,
+  isMovieRoute,
+  isMusicRoute,
+  resolveIsDark,
+} from "../utils/shellTheme";
+import { useTheme } from "../context/ThemeContext";
+import ThemeToggle from "./ThemeToggle";
 
 import resume from "../assets/Resume/resume.pdf";
 
@@ -12,12 +21,15 @@ const Navbar = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
+  const { theme } = useTheme();
+
   const isAboutPage = pathname === "/about";
   const isMusicPage = isMusicRoute(pathname);
   const isGamingPage = isGamingRoute(pathname);
   const isMoviePage = isMovieRoute(pathname);
   const isLearningPage = isLearningRoute(pathname);
-  const isDarkNav = isDarkRoute(pathname);
+  const isDarkNav = resolveIsDark(pathname, theme);
+  const isAboutLight = isAboutPage && !isDarkNav;
 
   const links = [
     { name: "Home", path: "/" },
@@ -87,7 +99,7 @@ const Navbar = () => {
                 : isLearningPage
                   ? "bg-orange-500 text-white shadow-lg shadow-orange-500/30"
                 : "bg-orange-500 text-white shadow-lg shadow-orange-500/30"
-          : isAboutPage
+          : isAboutLight
             ? "text-slate-700 hover:bg-white/30 hover:text-slate-900"
             : isMusicPage
               ? "text-[#b3b3b3] hover:bg-[#282828] hover:text-white"
@@ -128,13 +140,13 @@ const Navbar = () => {
       border-white/30
     `;
 
-  const shellClass = isAboutPage ? aboutShellClass : normalShellClass;
+  const shellClass = isAboutLight ? aboutShellClass : normalShellClass;
 
   /* ---------------------------------------------------------
      Logo
   --------------------------------------------------------- */
 
-  const logoTextClass = isAboutPage
+  const logoTextClass = isAboutLight
     ? "text-slate-800"
     : isMusicPage
       ? "text-white"
@@ -152,7 +164,7 @@ const Navbar = () => {
      Desktop navigation pill
   --------------------------------------------------------- */
 
-  const pillClass = isAboutPage
+  const pillClass = isAboutLight
     ? `
       border-white/30
       bg-white/20
@@ -174,7 +186,7 @@ const Navbar = () => {
      Mobile button
   --------------------------------------------------------- */
 
-  const mobileBtnClass = isAboutPage
+  const mobileBtnClass = isAboutLight
     ? `
       border-white/30
       bg-white/25
@@ -348,10 +360,28 @@ const Navbar = () => {
           </ul>
 
           {/* =================================================
-              RESUME
+              THEME + RESUME
           ================================================= */}
 
-          <div className="hidden md:block">
+          <div className="hidden items-center gap-3 md:flex">
+            <ThemeToggle
+              className={
+                isAboutLight
+                  ? "theme-toggle--about"
+                  : isMusicPage
+                    ? "theme-toggle--music"
+                    : isGamingPage
+                      ? "theme-toggle--gaming"
+                      : isMoviePage
+                        ? "theme-toggle--movie"
+                        : isLearningPage
+                          ? "theme-toggle--learning"
+                          : isDarkNav
+                            ? "theme-toggle--dark"
+                            : "theme-toggle--light"
+              }
+            />
+
             <a
               href={resume}
               target="_blank"
@@ -549,7 +579,7 @@ const Navbar = () => {
           md:hidden
 
           ${
-            isAboutPage
+            isAboutLight
               ? `
                 border-white/30
                 bg-white/70
@@ -620,7 +650,7 @@ const Navbar = () => {
                               : isLearningPage
                                 ? "bg-orange-500/20 text-orange-300"
                               : "bg-orange-500/20 text-orange-500"
-                        : isAboutPage
+                        : isAboutLight
                           ? "text-slate-700 hover:bg-white/30 hover:text-slate-900"
                           : isMusicPage
                             ? "text-[#b3b3b3] hover:bg-[#282828] hover:text-white"
@@ -643,6 +673,37 @@ const Navbar = () => {
             </li>
           ))}
         </ul>
+
+        <div className="mt-6 flex items-center justify-between gap-4">
+          <span
+            className={`text-sm font-medium ${
+              isAboutLight
+                ? "text-slate-600"
+                : isDarkNav
+                  ? "text-white/60"
+                  : "text-gray-500"
+            }`}
+          >
+            Theme
+          </span>
+          <ThemeToggle
+            className={
+              isAboutLight
+                ? "theme-toggle--about"
+                : isMusicPage
+                  ? "theme-toggle--music"
+                  : isGamingPage
+                    ? "theme-toggle--gaming"
+                    : isMoviePage
+                      ? "theme-toggle--movie"
+                      : isLearningPage
+                        ? "theme-toggle--learning"
+                        : isDarkNav
+                          ? "theme-toggle--dark"
+                          : "theme-toggle--light"
+            }
+          />
+        </div>
 
         <a
           href={resume}

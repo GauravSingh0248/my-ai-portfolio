@@ -3,18 +3,20 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaGithub, FaLinkedin, FaEnvelope, FaArrowUp } from "react-icons/fa";
 import {
   getFooterShellClass,
-  isDarkRoute,
   isGamingRoute,
   isLearningRoute,
   isMovieRoute,
   isMusicRoute,
+  resolveIsDark,
 } from "../utils/shellTheme";
+import { useTheme } from "../context/ThemeContext";
 
 const Footer = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
+  const { theme } = useTheme();
   const [scrolled, setScrolled] = useState(false);
-  const isDarkFooter = isDarkRoute(pathname);
+  const isDarkFooter = resolveIsDark(pathname, theme);
   const isMusicPage = isMusicRoute(pathname);
   const isGamingPage = isGamingRoute(pathname);
   const isMoviePage = isMovieRoute(pathname);

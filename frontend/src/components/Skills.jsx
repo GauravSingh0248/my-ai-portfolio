@@ -7,6 +7,7 @@ import {
   skillCategories,
 } from "../data/skillsData";
 import { useInView } from "../hooks/useInView";
+import { useTheme } from "../context/ThemeContext";
 
 const SectionHeader = ({ label, title, subtitle, centered = false }) => (
   <div className={centered ? "text-center" : ""}>
@@ -243,6 +244,7 @@ const Skills = () => {
   const [heroRef, heroVisible] = useInView(0.2);
   const [howRef, howVisible] = useInView();
   const [closingRef, closingVisible] = useInView();
+  const { isDark } = useTheme();
 
   const visibleCategories = useMemo(
     () =>
@@ -255,7 +257,9 @@ const Skills = () => {
   return (
     <section
       id="skills"
-      className="relative scroll-mt-28 min-h-screen overflow-hidden bg-[#070b14] text-white"
+      className={`skills-page relative scroll-mt-28 min-h-screen overflow-hidden transition-colors duration-500 ${
+        isDark ? "bg-[#070b14] text-white" : "bg-slate-50 text-slate-900"
+      }`}
     >
       {/* Background effects */}
       <div className="pointer-events-none fixed inset-0">

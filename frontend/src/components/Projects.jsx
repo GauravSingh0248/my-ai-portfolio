@@ -11,6 +11,7 @@ import {
   projects,
 } from "../data/projectsData";
 import { useInView } from "../hooks/useInView";
+import { useTheme } from "../context/ThemeContext";
 
 /* ─── Shared primitives ─────────────────────────────────────────── */
 
@@ -159,9 +160,18 @@ const PipelineVisual = ({ steps, visible }) => (
 
 const SentimentVisual = ({ visible }) => {
   const sentiments = [
-    { label: "Positive", color: "border-emerald-400/30 bg-emerald-500/10 text-emerald-300" },
-    { label: "Neutral", color: "border-white/15 bg-white/[0.04] text-white/60" },
-    { label: "Negative", color: "border-rose-400/30 bg-rose-500/10 text-rose-300" },
+    {
+      label: "Positive",
+      color: "border-emerald-400/30 bg-emerald-500/10 text-emerald-300",
+    },
+    {
+      label: "Neutral",
+      color: "border-white/15 bg-white/[0.04] text-white/60",
+    },
+    {
+      label: "Negative",
+      color: "border-rose-400/30 bg-rose-500/10 text-rose-300",
+    },
   ];
 
   return (
@@ -342,7 +352,10 @@ const InProgressProject = ({ project, visible }) => (
     style={{ "--stagger": project.stagger ?? 0 }}
   >
     <div className="projects-glow-pulse pointer-events-none absolute -right-16 top-1/2 h-64 w-64 -translate-y-1/2 rounded-full bg-purple-500/15 blur-3xl" />
-    <div className="projects-neural-grid pointer-events-none absolute inset-0 opacity-30" aria-hidden="true" />
+    <div
+      className="projects-neural-grid pointer-events-none absolute inset-0 opacity-30"
+      aria-hidden="true"
+    />
     <div className="relative grid gap-8 lg:grid-cols-2 lg:items-center">
       <div>
         <span className="projects-glow-pulse inline-flex items-center gap-2 rounded-full border border-purple-400/35 bg-purple-500/15 px-3 py-1 text-xs font-bold uppercase tracking-[0.2em] text-purple-200">
@@ -559,14 +572,15 @@ const Projects = () => {
   const [activeFilter, setActiveFilter] = useState("all");
   const [heroRef, heroVisible] = useInView(0.2);
   const [filterAnimKey, setFilterAnimKey] = useState(0);
+  const { isDark } = useTheme();
 
   const filteredProjects = useMemo(
     () =>
       projects.filter(
         (project) =>
-          activeFilter === "all" || project.filters.includes(activeFilter)
+          activeFilter === "all" || project.filters.includes(activeFilter),
       ),
-    [activeFilter]
+    [activeFilter],
   );
 
   const featuredProjects = filteredProjects.filter(
@@ -574,7 +588,7 @@ const Projects = () => {
       p.layout === "featured" ||
       p.layout === "featured-ai" ||
       p.layout === "milestone" ||
-      p.layout === "in-progress"
+      p.layout === "in-progress",
   );
 
   const gridProjects = filteredProjects.filter(
@@ -582,7 +596,7 @@ const Projects = () => {
       p.layout !== "featured" &&
       p.layout !== "featured-ai" &&
       p.layout !== "milestone" &&
-      p.layout !== "in-progress"
+      p.layout !== "in-progress",
   );
 
   const handleFilterChange = (id) => {
@@ -593,7 +607,9 @@ const Projects = () => {
   return (
     <section
       id="projects"
-      className="relative scroll-mt-28 min-h-screen overflow-hidden bg-[#070b14] text-white"
+      className={`projects-page relative scroll-mt-28 min-h-screen overflow-hidden transition-colors duration-500 ${
+        isDark ? "bg-[#070b14] text-white" : "bg-slate-50 text-slate-900"
+      }`}
     >
       <HeroBackground />
 
