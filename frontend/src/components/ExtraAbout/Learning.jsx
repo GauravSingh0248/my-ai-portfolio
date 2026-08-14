@@ -137,14 +137,14 @@ const Learning = () => {
           </div>
 
           <div className="relative">
-            <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-orange-500/20 via-purple-500/10 to-cyan-500/10 blur-2xl" />
+            <div className="absolute -inset-4 rounded-4xl bg-linear-to-br from-orange-500/20 via-purple-500/10 to-cyan-500/10 blur-2xl" />
             <div className="relative overflow-hidden rounded-[1.75rem] border border-white/10 shadow-2xl shadow-black/40">
               <img
                 src={genAiHero}
                 alt="Learning and exploring Generative AI"
-                className="aspect-[4/3] w-full object-cover"
+                className="aspect-4/3 w-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#050508]/80 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-t from-[#050508]/80 via-transparent to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-6">
                 <p className="text-xs font-semibold uppercase tracking-[0.25em] text-orange-400">
                   Generative AI
@@ -174,7 +174,7 @@ const Learning = () => {
           </div>
 
           <div className="grid gap-6 lg:grid-cols-[1.2fr_1fr]">
-            <div className="space-y-5 rounded-[1.75rem] border border-white/8 bg-white/[0.03] p-8 backdrop-blur-md md:p-10">
+            <div className="space-y-5 rounded-[1.75rem] border border-white/8 bg-white/3 p-8 backdrop-blur-md md:p-10">
               <p className="text-lg leading-8 text-white/70">
                 One of my main areas of learning right now is{" "}
                 <span className="font-semibold text-white">
@@ -201,9 +201,9 @@ const Learning = () => {
               <img
                 src={genAiPortrait}
                 alt="Generative AI concept"
-                className="h-full min-h-[280px] w-full object-cover"
+                className="h-full min-h-70 w-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-[#050508]/60 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-r from-[#050508]/60 via-transparent to-transparent" />
             </div>
           </div>
         </section>
@@ -235,7 +235,7 @@ const Learning = () => {
               {stackItems.map(({ icon: Icon, name, accent, glow, description }) => (
                 <div
                   key={name}
-                  className="group relative overflow-hidden rounded-2xl border border-white/8 bg-white/[0.03] p-6 transition duration-300 hover:-translate-y-1 hover:border-white/15 hover:bg-white/[0.05]"
+                  className="group relative overflow-hidden rounded-2xl border border-white/8 bg-white/[0.03] p-6 transition duration-300 hover:-translate-y-1 hover:border-white/15 hover:bg-white/5"
                   style={{
                     boxShadow: `0 0 0 0 ${glow}`,
                   }}

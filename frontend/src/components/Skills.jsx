@@ -42,7 +42,7 @@ const SkillCard = ({ skill, stagger = 0, visible }) => {
       style={{ "--stagger": stagger, "--icon-glow": `${skill.color}66` }}
     >
       <div
-        className="relative flex h-full flex-col items-center rounded-2xl border border-white/8 bg-white/[0.03] px-4 py-5 text-center backdrop-blur-sm transition duration-300 hover:-translate-y-1.5 hover:border-orange-400/25 hover:bg-white/[0.06] hover:shadow-[0_12px_40px_rgba(249,115,22,0.08)]"
+        className="relative flex h-full flex-col items-center rounded-2xl border border-white/8 bg-white/3 px-4 py-5 text-center backdrop-blur-sm transition duration-300 hover:-translate-y-1.5 hover:border-orange-400/25 hover:bg-white/[0.06] hover:shadow-[0_12px_40px_rgba(249,115,22,0.08)]"
       >
         <div
           className="skills-card-icon mb-3 flex h-11 w-11 items-center justify-center rounded-xl border border-white/8 bg-white/[0.04]"

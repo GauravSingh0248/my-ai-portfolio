@@ -44,7 +44,7 @@ export const getNavShellClass = (isDark, scrolled, pathname = "") => {
       : "border-b border-white/8 bg-[#050508]/88 backdrop-blur-xl";
   }
 
-  if (pathname === "/skills") {
+  if (pathname === "/skills" || pathname === "/projects") {
     return scrolled
       ? "border-b border-orange-500/15 bg-[#070b14]/98 shadow-[0_8px_32px_rgba(0,0,0,0.55)] backdrop-blur-xl"
       : "border-b border-white/8 bg-[#070b14]/88 backdrop-blur-xl";
@@ -86,7 +86,7 @@ export const getFooterShellClass = (isDark, scrolled, pathname = "") => {
       : "border-t border-white/8 bg-[#050508]/95 backdrop-blur-xl";
   }
 
-  if (pathname === "/skills") {
+  if (pathname === "/skills" || pathname === "/projects") {
     return scrolled
       ? "border-t border-orange-500/15 bg-[#070b14]/98 shadow-[0_-8px_32px_rgba(0,0,0,0.5)] backdrop-blur-xl"
       : "border-t border-white/8 bg-[#070b14]/95 backdrop-blur-xl";
@@ -105,8 +105,7 @@ export const getFooterShellClass = (isDark, scrolled, pathname = "") => {
 
 export const getLayoutBgClass = (pathname) => {
   if (pathname === "/") return "bg-[#1e1e1e]";
-  if (pathname === "/projects") return "bg-gray-900";
-  if (pathname === "/skills") return "bg-[#070b14]";
+  if (pathname === "/projects" || pathname === "/skills") return "bg-[#070b14]";
   if (isMusicRoute(pathname)) return "bg-[#121212]";
   if (isGamingRoute(pathname)) return "bg-[#050508]";
   if (isMovieRoute(pathname)) return "bg-[#030308]";
