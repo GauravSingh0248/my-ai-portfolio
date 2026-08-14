@@ -9,7 +9,7 @@ const AIChatbot = () => {
   const [messages, setMessages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSendMessage = (message) => {
+  const handleSendMessage = async (message) => {
     if (!message.trim() || isLoading) return;
 
     const userMessage = {
@@ -18,65 +18,51 @@ const AIChatbot = () => {
       content: message.trim(),
     };
 
-    // Add user's message immediately
     setMessages((previousMessages) => [...previousMessages, userMessage]);
 
     setIsLoading(true);
 
-    /*
-     * Temporary frontend-only response.
-     *
-     * Later this section will be replaced with:
-     *
-     * POST /api/chat
-     *
-     * and the response will come from FastAPI + LLM.
-     */
-    const response =
-      "Hi! I'm Gaurav's AI assistant. I'm currently running in demo mode. Soon I'll be connected to the backend and will be able to answer questions about Gaurav's skills, projects, education, experience, and more.";
+    try {
+      const response = await fetch("http://127.0.0.1:8000/api/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          message: message.trim(),
+        }),
+      });
 
-    // Small thinking delay
-    setTimeout(() => {
-      const assistantId = Date.now() + 1;
+      if (!response.ok) {
+        throw new Error("Failed to get response from server");
+      }
 
-      // Create an empty assistant message
+      const data = await response.json();
+
+      const assistantMessage = {
+        id: Date.now() + 1,
+        role: "assistant",
+        content: data.response,
+      };
+
       setMessages((previousMessages) => [
         ...previousMessages,
-        {
-          id: assistantId,
-          role: "assistant",
-          content: "",
-        },
+        assistantMessage,
       ]);
+    } catch (error) {
+      console.error("Chat API error:", error);
 
-      let currentIndex = 0;
+      const errorMessage = {
+        id: Date.now() + 1,
+        role: "assistant",
+        content:
+          "Sorry, I'm unable to connect to my backend right now. Please try again later.",
+      };
 
-      /*
-       * Type the assistant response character by character.
-       */
-      const typingInterval = setInterval(() => {
-        currentIndex += 1;
-
-        setMessages((previousMessages) =>
-          previousMessages.map((msg) =>
-            msg.id === assistantId
-              ? {
-                  ...msg,
-                  content: response.slice(0, currentIndex),
-                }
-              : msg,
-          ),
-        );
-
-        // Response completely typed
-        if (currentIndex >= response.length) {
-          clearInterval(typingInterval);
-
-          // Only stop loading after typing finishes
-          setIsLoading(false);
-        }
-      }, 22);
-    }, 700);
+      setMessages((previousMessages) => [...previousMessages, errorMessage]);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (

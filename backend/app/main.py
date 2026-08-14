@@ -5,6 +5,8 @@ from app.database.connection import test_connection
 
 from app.routes.contact import router as contact_router
 
+from app.routes.chat import router as chat_router
+
 app = FastAPI(
     title="Gaurav Portfolio API",
     description="Backend API for Gaurav's portfolio",
@@ -21,6 +23,7 @@ app.add_middleware(
 )
 
 app.include_router(contact_router)
+app.include_router(chat_router)
 
 @app.on_event("startup")
 def startup_event():
