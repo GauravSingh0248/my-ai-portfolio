@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
-import { getNavShellClass, isDarkRoute, isGamingRoute, isMovieRoute, isMusicRoute } from "../utils/shellTheme";
+import { getNavShellClass, isDarkRoute, isGamingRoute, isLearningRoute, isMovieRoute, isMusicRoute } from "../utils/shellTheme";
 
 import resume from "../assets/Resume/resume.pdf";
 
@@ -16,6 +16,7 @@ const Navbar = () => {
   const isMusicPage = isMusicRoute(pathname);
   const isGamingPage = isGamingRoute(pathname);
   const isMoviePage = isMovieRoute(pathname);
+  const isLearningPage = isLearningRoute(pathname);
   const isDarkNav = isDarkRoute(pathname);
 
   const links = [
@@ -83,6 +84,8 @@ const Navbar = () => {
               ? "bg-violet-500 text-white shadow-lg shadow-violet-500/30"
               : isMoviePage
                 ? "bg-amber-500 text-black shadow-lg shadow-amber-500/30"
+                : isLearningPage
+                  ? "bg-orange-500 text-white shadow-lg shadow-orange-500/30"
                 : "bg-orange-500 text-white shadow-lg shadow-orange-500/30"
           : isAboutPage
             ? "text-slate-700 hover:bg-white/30 hover:text-slate-900"
@@ -92,6 +95,8 @@ const Navbar = () => {
                 ? "text-white/45 hover:bg-white/[0.06] hover:text-white"
                 : isMoviePage
                   ? "text-white/45 hover:bg-white/[0.06] hover:text-white"
+                  : isLearningPage
+                    ? "text-white/45 hover:bg-white/[0.06] hover:text-white"
                   : isDarkNav
                   ? "text-white/65 hover:bg-white/10 hover:text-white"
                   : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
@@ -137,6 +142,8 @@ const Navbar = () => {
         ? "text-white"
         : isMoviePage
           ? "text-white"
+          : isLearningPage
+            ? "text-white"
           : isDarkNav
           ? "text-white"
           : "text-gray-900";
@@ -157,6 +164,8 @@ const Navbar = () => {
         ? "border-white/8 bg-white/[0.03]"
         : isMoviePage
           ? "border-white/10 bg-white/[0.03]"
+          : isLearningPage
+            ? "border-white/8 bg-white/[0.03]"
           : isDarkNav
           ? "border-white/10 bg-white/5"
           : "border-gray-200/80 bg-gray-50/80";
@@ -179,6 +188,8 @@ const Navbar = () => {
         ? "border-white/8 bg-white/[0.04] text-white hover:bg-white/[0.08]"
         : isMoviePage
           ? "border-white/10 bg-white/[0.04] text-white hover:bg-white/[0.08]"
+          : isLearningPage
+            ? "border-white/8 bg-white/[0.04] text-white hover:bg-white/[0.08]"
           : isDarkNav
           ? "border-white/10 bg-white/5 text-white hover:bg-white/10"
           : "border-gray-200 bg-gray-50 text-gray-800 hover:bg-gray-100";
@@ -269,6 +280,8 @@ const Navbar = () => {
                       ? "bg-linear-to-br from-violet-500 to-cyan-400 shadow-violet-500/30"
                       : isMoviePage
                         ? "bg-linear-to-br from-amber-500 to-orange-500 shadow-amber-500/30"
+                        : isLearningPage
+                          ? "bg-linear-to-br from-orange-500 to-purple-500 shadow-orange-500/30"
                         : "bg-linear-to-br from-orange-500 to-amber-400 shadow-orange-500/30"
                 }
               `}
@@ -294,6 +307,8 @@ const Navbar = () => {
                       ? "text-violet-400"
                       : isMoviePage
                         ? "text-amber-400"
+                        : isLearningPage
+                          ? "text-orange-400"
                         : "bg-linear-to-r from-orange-400 to-amber-300 bg-clip-text text-transparent"
                 }
               >
@@ -403,6 +418,27 @@ const Navbar = () => {
                 duration-300
                 hover:-translate-y-0.5
                 hover:shadow-amber-500/40
+              `
+                      : isLearningPage
+                        ? `
+                group
+                relative
+                overflow-hidden
+                rounded-full
+                bg-linear-to-r
+                from-orange-500
+                to-purple-500
+                px-5
+                py-2.5
+                text-sm
+                font-semibold
+                text-white
+                shadow-lg
+                shadow-orange-500/25
+                transition-all
+                duration-300
+                hover:-translate-y-0.5
+                hover:shadow-orange-500/40
               `
                       : `
                 group
@@ -533,6 +569,11 @@ const Navbar = () => {
                   border-white/10
                   bg-[#030308]/98
                 `
+                : isLearningPage
+                  ? `
+                  border-white/8
+                  bg-[#050508]/98
+                `
               : isDarkNav
                 ? `
                   border-white/10
@@ -576,6 +617,8 @@ const Navbar = () => {
                             ? "bg-violet-500/20 text-violet-300"
                             : isMoviePage
                               ? "bg-amber-500/20 text-amber-300"
+                              : isLearningPage
+                                ? "bg-orange-500/20 text-orange-300"
                               : "bg-orange-500/20 text-orange-500"
                         : isAboutPage
                           ? "text-slate-700 hover:bg-white/30 hover:text-slate-900"
@@ -585,6 +628,8 @@ const Navbar = () => {
                               ? "text-white/45 hover:bg-white/6 hover:text-white"
                               : isMoviePage
                                 ? "text-white/45 hover:bg-white/6 hover:text-white"
+                                : isLearningPage
+                                  ? "text-white/45 hover:bg-white/6 hover:text-white"
                                 : isDarkNav
                                 ? "text-white/70 hover:bg-white/5 hover:text-white"
                                 : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
@@ -661,6 +706,26 @@ const Navbar = () => {
             duration-300
             hover:-translate-y-0.5
             hover:shadow-amber-500/40
+          `
+                  : isLearningPage
+                    ? `
+            mt-6
+            inline-block
+            rounded-full
+            bg-linear-to-r
+            from-orange-500
+            to-purple-500
+            px-5
+            py-2.5
+            text-sm
+            font-semibold
+            text-white
+            shadow-lg
+            shadow-orange-500/25
+            transition-all
+            duration-300
+            hover:-translate-y-0.5
+            hover:shadow-orange-500/40
           `
                   : `
             mt-6

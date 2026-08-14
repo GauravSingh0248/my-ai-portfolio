@@ -5,6 +5,7 @@ import {
   getFooterShellClass,
   isDarkRoute,
   isGamingRoute,
+  isLearningRoute,
   isMovieRoute,
   isMusicRoute,
 } from "../utils/shellTheme";
@@ -17,6 +18,7 @@ const Footer = () => {
   const isMusicPage = isMusicRoute(pathname);
   const isGamingPage = isGamingRoute(pathname);
   const isMoviePage = isMovieRoute(pathname);
+  const isLearningPage = isLearningRoute(pathname);
 
   const socials = [
     {
@@ -44,7 +46,7 @@ const Footer = () => {
   }, [pathname]);
 
   const shellClass = getFooterShellClass(isDarkFooter, scrolled, pathname);
-  const headingClass = isMusicPage || isGamingPage || isMoviePage
+  const headingClass = isMusicPage || isGamingPage || isMoviePage || isLearningPage
     ? "text-white"
     : isDarkFooter
       ? "text-white"
@@ -55,6 +57,8 @@ const Footer = () => {
       ? "text-white/45"
       : isMoviePage
         ? "text-white/45"
+        : isLearningPage
+          ? "text-white/45"
         : isDarkFooter
           ? "text-white/55"
           : "text-gray-500";
@@ -64,6 +68,8 @@ const Footer = () => {
       ? "border-white/8 bg-white/[0.03] text-white/50 hover:border-violet-500/40 hover:bg-violet-500/15 hover:text-violet-300"
       : isMoviePage
         ? "border-white/10 bg-white/[0.03] text-white/50 hover:border-amber-500/40 hover:bg-amber-500/15 hover:text-amber-300"
+        : isLearningPage
+          ? "border-white/8 bg-white/[0.03] text-white/50 hover:border-orange-500/40 hover:bg-orange-500/15 hover:text-orange-300"
         : isDarkFooter
           ? "border-white/10 bg-white/5 text-white/80 hover:border-orange-500/40 hover:bg-orange-500/20 hover:text-orange-300"
           : "border-gray-200 bg-white text-gray-600 hover:border-orange-300 hover:bg-orange-50 hover:text-orange-500";
@@ -113,6 +119,8 @@ const Footer = () => {
                       ? "bg-gradient-to-br from-violet-500 to-cyan-400 text-white shadow-violet-500/30"
                       : isMoviePage
                         ? "bg-gradient-to-br from-amber-500 to-orange-500 text-black shadow-amber-500/30"
+                        : isLearningPage
+                          ? "bg-gradient-to-br from-orange-500 to-purple-500 text-white shadow-orange-500/30"
                         : "bg-gradient-to-br from-orange-500 to-amber-400 text-white shadow-orange-500/30"
                 }`}
               >
@@ -128,6 +136,8 @@ const Footer = () => {
                         ? "text-violet-400"
                         : isMoviePage
                           ? "text-amber-400"
+                          : isLearningPage
+                            ? "text-orange-400"
                           : "bg-gradient-to-r from-orange-400 to-amber-300 bg-clip-text text-transparent"
                   }
                 >
@@ -151,6 +161,8 @@ const Footer = () => {
                     ? "bg-gradient-to-r from-violet-500 to-cyan-400 text-white shadow-violet-500/25 hover:shadow-violet-500/40"
                     : isMoviePage
                       ? "bg-gradient-to-r from-amber-500 to-orange-500 text-black shadow-amber-500/25 hover:shadow-amber-500/40"
+                      : isLearningPage
+                        ? "bg-gradient-to-r from-orange-500 to-purple-500 text-white shadow-orange-500/25 hover:shadow-orange-500/40"
                       : "bg-gradient-to-r from-orange-500 to-amber-500 text-white shadow-orange-500/25 hover:shadow-orange-500/40"
               }`}
             >
