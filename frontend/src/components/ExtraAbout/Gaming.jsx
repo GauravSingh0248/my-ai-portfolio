@@ -16,8 +16,8 @@ import {
 
 import cod1 from "../../assets/AboutPage/GamesImages/callOfDuty/wallpaperflare.com_wallpaper (1).jpg";
 import cod2 from "../../assets/AboutPage/GamesImages/callOfDuty/wallpaperflare.com_wallpaper (12).jpg";
-import clash1 from "../../assets/AboutPage/GamesImages/ClashOfClansAndRoyal/wallpaperflare.com_wallpaper (3).jpg";
-import clash2 from "../../assets/AboutPage/GamesImages/ClashOfClansAndRoyal/wallpaperflare.com_wallpaper (5).jpg";
+import clash1 from "../../assets/AboutPage/GamesImages/clash-of-clans/wallpaperflare.com_wallpaper (3).jpg";
+import clash2 from "../../assets/AboutPage/GamesImages/clash-of-clans/wallpaperflare.com_wallpaper (5).jpg";
 import gta1 from "../../assets/AboutPage/GamesImages/Gta/wallpaperflare.com_wallpaper (1).jpg";
 import gta2 from "../../assets/AboutPage/GamesImages/Gta/wallpaperflare.com_wallpaper (4).jpg";
 import nfs from "../../assets/AboutPage/GamesImages/Nfs/wallpaperflare.com_wallpaper (11).jpg";
