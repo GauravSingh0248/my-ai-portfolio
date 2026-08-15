@@ -23,15 +23,18 @@ const AIChatbot = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/chat", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const response = await fetch(
+        "https://my-ai-portfolio-dd2a.onrender.com/api/chat",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            message: message.trim(),
+          }),
         },
-        body: JSON.stringify({
-          message: message.trim(),
-        }),
-      });
+      );
 
       if (!response.ok) {
         throw new Error("Failed to get response from server");
