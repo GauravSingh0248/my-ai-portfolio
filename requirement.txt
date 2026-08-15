@@ -1,0 +1,11 @@
+fastapi
+uvicorn[standard]
+python-dotenv
+requests
+pymongo
+
+langchain
+langchain-google-genai
+langchain-chroma
+langchain-text-splitters
+chromadb
