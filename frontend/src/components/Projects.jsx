@@ -560,9 +560,6 @@ const HeroBackground = () => (
     <span className="absolute right-[8%] top-[18%] font-mono text-[10px] text-white/[0.04]">
       {"const journey = build();"}
     </span>
-    <span className="absolute left-[6%] bottom-[28%] font-mono text-[10px] text-white/[0.04]">
-      {"model.train()"}
-    </span>
   </div>
 );
 
