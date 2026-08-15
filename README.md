@@ -3,12 +3,19 @@
 > A modern, interactive developer portfolio built with React, FastAPI, LangChain, Gemini, and Retrieval-Augmented Generation (RAG).
 
 <p align="center">
+  <a href="https://my-ai-portfolio-lake.vercel.app/">
+    <img src="https://img.shields.io/badge/Live%20Portfolio-Visit%20Now-00C853?style=for-the-badge&logo=vercel" />
+  </a>
   <a href="https://github.com/GauravSingh0248">
     <img src="https://img.shields.io/badge/GitHub-GauravSingh0248-181717?style=for-the-badge&logo=github" />
   </a>
   <a href="https://linkedin.com/in/gauravsingh0248">
     <img src="https://img.shields.io/badge/LinkedIn-Gaurav%20Singh-0A66C2?style=for-the-badge&logo=linkedin" />
   </a>
+</p>
+
+<p align="center">
+  <a href="https://my-ai-portfolio-lake.vercel.app/"><strong>🌐 View Live Portfolio</strong></a>
 </p>
 
 ---
@@ -29,6 +36,10 @@ The main goal was to build more than a traditional portfolio.
 
 The website includes an **AI-powered portfolio assistant** that can answer questions about me using my own portfolio knowledge base.
 
+### 🔴 Live Project
+
+**Portfolio:** https://my-ai-portfolio-lake.vercel.app/
+
 ---
 
 ## 🤖 AI Portfolio Assistant
@@ -46,7 +57,7 @@ Visitor
 React Chatbot
    │
    ▼
-FastAPI
+FastAPI Backend
    │
    ▼
 Retriever
@@ -113,12 +124,15 @@ These files are loaded, split into chunks, converted into embeddings, and stored
 - Automatic chat scrolling
 - Enter-to-send support
 - Shift + Enter for multiline messages
+- Production frontend-backend integration
 
 ## 📩 Contact System
 
 Visitors can submit their contact information and message through the portfolio contact form.
 
 The backend processes the submission and sends an automated confirmation email.
+
+Contact data is stored using **MongoDB Atlas**.
 
 ## 🔐 Backend
 
@@ -127,6 +141,7 @@ The backend processes the submission and sends an automated confirmation email.
 - Rate limiting for contact requests
 - RAG pipeline
 - Gemini integration
+- MongoDB Atlas integration
 - Email service integration
 
 ---
@@ -163,6 +178,11 @@ The backend processes the submission and sends an automated confirmation email.
 - MongoDB Atlas
 - EmailJS
 
+### Deployment
+
+- Vercel — Frontend
+- Render — Backend
+
 ### Tools
 
 - Git
@@ -179,6 +199,7 @@ my-ai-portfolio/
 │
 ├── backend/
 │   ├── app/
+│   │   ├── database/
 │   │   ├── routes/
 │   │   ├── services/
 │   │   └── utils/
@@ -353,6 +374,36 @@ The knowledge base is currently split into **8 Markdown files** and the vector s
 
 ---
 
+# 🚀 Deployment
+
+The project is deployed as two services:
+
+```text
+                    ┌──────────────────────┐
+                    │   Vercel             │
+                    │   React Frontend     │
+                    └──────────┬───────────┘
+                               │
+                               │ API Requests
+                               ▼
+                    ┌──────────────────────┐
+                    │   Render             │
+                    │   FastAPI Backend    │
+                    └──────────┬───────────┘
+                               │
+                 ┌─────────────┼─────────────┐
+                 ▼             ▼             ▼
+            MongoDB Atlas   ChromaDB      Gemini
+```
+
+### Live Portfolio
+
+🌐 https://my-ai-portfolio-lake.vercel.app/
+
+The frontend is deployed on **Vercel**, while the FastAPI backend is deployed on **Render**.
+
+---
+
 # 🎯 Why I Built This
 
 I wanted my portfolio to demonstrate the technologies I am learning rather than simply list them.
@@ -397,11 +448,10 @@ I enjoy building projects that combine software engineering and AI to create pra
 
 # 🚧 Future Updates
 
-This project is being developed iteratively. The current version focuses on establishing a solid portfolio and RAG-powered AI assistant.
+This project is being developed iteratively. The current version focuses on a deployed portfolio and RAG-powered AI assistant.
 
 Planned improvements include:
 
-- [ ] Deploy the frontend and backend
 - [ ] Add conversational memory to the AI assistant
 - [ ] Improve RAG retrieval and chunking
 - [ ] Add source references to AI responses
@@ -413,7 +463,7 @@ Planned improvements include:
 - [ ] Add portfolio-specific tools
 - [ ] Add better analytics and monitoring
 - [ ] Improve production security and abuse prevention
-- [ ] Continue improving the UI/UX based on real visitor feedback
+- [ ] Improve UI/UX based on real visitor feedback
 
 ---
 
