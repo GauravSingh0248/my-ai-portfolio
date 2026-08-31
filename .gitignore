@@ -22,8 +22,6 @@ dist/
 # Python / Backend
 # =========================
 
-# ChromaDB
-chroma_db/
 
 __pycache__/
 *.py[cod]
