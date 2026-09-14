@@ -132,18 +132,6 @@ const Home = () => {
             >
               <FaLinkedinIn />
             </a>
-
-            <span
-              className={`ml-2 h-px w-12 ${isDark ? "bg-white/30" : "bg-slate-400/50"}`}
-            />
-
-            <span
-              className={`text-xs font-medium uppercase tracking-[0.25em] ${
-                isDark ? "text-white/50" : "text-slate-500"
-              }`}
-            >
-              Scroll to explore
-            </span>
           </div>
         </div>
       </div>
@@ -155,15 +143,6 @@ const Home = () => {
             : "bg-gradient-to-t from-slate-100/90 to-transparent"
         }`}
       />
-
-      <div
-        className={`absolute bottom-6 left-1/2 hidden -translate-x-1/2 items-center gap-3 text-xs uppercase tracking-[0.3em] md:flex ${
-          isDark ? "text-white/50" : "text-slate-500"
-        }`}
-      >
-        <span className={`h-8 w-px ${isDark ? "bg-white/30" : "bg-slate-400/50"}`} />
-        Scroll
-      </div>
     </section>
   );
 };

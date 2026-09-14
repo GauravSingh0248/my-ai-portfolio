@@ -20,6 +20,37 @@ const Contact = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const getApiErrorMessage = (detail, fallback) => {
+    if (!detail) return fallback;
+
+    if (typeof detail === "string") return detail;
+
+    if (Array.isArray(detail)) {
+      const messages = detail
+        .map((item) => {
+          if (typeof item === "string") return item;
+          if (!item || typeof item !== "object") return null;
+
+          const field = Array.isArray(item.loc)
+            ? item.loc.filter((part) => part !== "body").join(" ")
+            : "";
+
+          if (item.msg && field) return `${field}: ${item.msg}`;
+          if (item.msg) return item.msg;
+          return null;
+        })
+        .filter(Boolean);
+
+      return messages.length > 0 ? messages.join(". ") : fallback;
+    }
+
+    if (typeof detail === "object" && typeof detail.msg === "string") {
+      return detail.msg;
+    }
+
+    return fallback;
+  };
+
   const handleChange = (event) => {
     const { name, value } = event.target;
 
@@ -40,7 +71,7 @@ const Contact = () => {
 
     try {
       const response = await fetch(
-        "https://my-ai-portfolio-dd2a.onrender.com/api/contact",
+        "https://my-ai-portfolio-dd2a.onrender.com/api/contact/",
         {
           method: "POST",
           headers: {
@@ -50,15 +81,30 @@ const Contact = () => {
         },
       );
 
-      const data = await response.json();
+      let data = null;
+
+      try {
+        data = await response.json();
+      } catch {
+        throw new Error(
+          response.ok
+            ? "Received an invalid response from the server."
+            : "Unable to send your message. Please try again.",
+        );
+      }
 
       if (!response.ok) {
-        throw new Error(data.detail || "Something went wrong.");
+        throw new Error(
+          getApiErrorMessage(data?.detail, "Something went wrong."),
+        );
       }
 
       setStatus({
         type: "success",
-        message: data.message,
+        message:
+          typeof data?.message === "string"
+            ? data.message
+            : "Your message has been sent successfully!",
       });
 
       setFormData({
@@ -70,10 +116,15 @@ const Contact = () => {
     } catch (error) {
       console.error("Contact form error:", error);
 
+      const fallback = "Unable to send your message. Please try again.";
+      const message =
+        error instanceof Error && error.message && error.message !== "[object Object]"
+          ? error.message
+          : fallback;
+
       setStatus({
         type: "error",
-        message:
-          error.message || "Unable to send your message. Please try again.",
+        message,
       });
     } finally {
       setIsSubmitting(false);
@@ -196,6 +247,8 @@ const Contact = () => {
                     onChange={handleChange}
                     placeholder="Your Name"
                     required
+                    minLength={2}
+                    maxLength={100}
                     className={`mt-2 w-full rounded-xl border px-4 py-3 transition outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-300 ${
                       isDark
                         ? "border-white/10 bg-white/[0.04] text-white placeholder:text-white/30"
@@ -249,6 +302,8 @@ const Contact = () => {
                   onChange={handleChange}
                   placeholder="Project Discussion"
                   required
+                  minLength={3}
+                  maxLength={150}
                   className={`mt-2 w-full rounded-xl border px-4 py-3 transition outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-300 ${
                     isDark
                       ? "border-white/10 bg-white/[0.04] text-white placeholder:text-white/30"
@@ -275,6 +330,8 @@ const Contact = () => {
                   onChange={handleChange}
                   placeholder="Tell me about your project..."
                   required
+                  minLength={10}
+                  maxLength={2000}
                   className={`mt-2 w-full resize-none rounded-xl border px-4 py-3 transition outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-300 ${
                     isDark
                       ? "border-white/10 bg-white/[0.04] text-white placeholder:text-white/30"
